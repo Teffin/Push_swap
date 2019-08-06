@@ -15,11 +15,17 @@
 static int		ft_pars_flags(char c, t_push *nums)
 {
 	if (c == 'v')
-		nums->flag_v = 1;
+		nums->flag_visual = 1;
 	else if (c == 'j')
 		nums->flag_j = 1;
 	else if (c == '-')
 		nums->end_flag = 1;
+	else if (c == 'd')
+		nums->flag_sleep_mode = 1000;
+	else if (c == 's')
+		nums->flag_score = 1;
+	else if (c == 't')
+		nums->checker = 1;
 	else
 		return (0);
 	return (1);

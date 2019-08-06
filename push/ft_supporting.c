@@ -12,11 +12,13 @@
 
 #include "push_swap.h"
 
-int         ft_sup_checking(int ac, char **av, t_push *nums)
+int					ft_sup_checking(int ac, char **av, t_push *nums)
 {
 	int			counter;
 
 	counter = 1;
+	if (ac < 2)
+		return (0);
 	while (ac > counter)
 	{
 		if (!nums->end_flag && ft_check_flag(av[counter], nums))
@@ -32,13 +34,13 @@ int         ft_sup_checking(int ac, char **av, t_push *nums)
 			return (0);
 		}
 	}
-	return(1);
+	return (1);
 }
 
-void		ft_support_after_valid(t_push *nums)
+void				ft_support_after_valid(t_push *nums)
 {
 	t_num	*temp;
-	
+
 	nums->first_a = nums->num_a;
 	temp = nums->num_a;
 	while (temp != NULL && temp->next != NULL)
@@ -59,19 +61,18 @@ void				ft_num_null(t_push *nums, char stack)
 {
 	if (stack == 'a')
 	{
-		nums->num_b = nums->num_a;
 		nums->num_a = NULL;
 		nums->first_a = NULL;
 		nums->last_a = NULL;
 	}
 	if (stack == 'b')
 	{
-		nums->num_a = nums->num_b;
 		nums->num_b = NULL;
 		nums->first_b = NULL;
 		nums->last_b = NULL;
 	}
 }
+
 void				ft_supp_last_first_item(t_push *nums, char stack)
 {
 	if (stack == 'a')
@@ -87,5 +88,25 @@ void				ft_supp_last_first_item(t_push *nums, char stack)
 		nums->last_b = nums->num_b;
 		nums->num_b->next = nums->num_b;
 		nums->num_b->prev = nums->num_b;
+	}
+}
+
+void				ft_resave_first_item(t_push *nums, char stack)
+{
+	if (stack == 'a')
+	{
+		nums->num_a->next = nums->first_a;
+		nums->num_a->prev = nums->last_a;
+		nums->first_a->prev = nums->num_a;
+		nums->last_a->next = nums->num_a;
+		nums->first_a = nums->num_a;
+	}
+	if (stack == 'b')
+	{
+		nums->num_b->next = nums->first_b;
+		nums->num_b->prev = nums->last_b;
+		nums->first_b->prev = nums->num_b;
+		nums->last_b->next = nums->num_b;
+		nums->first_b = nums->num_b;
 	}
 }

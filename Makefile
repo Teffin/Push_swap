@@ -10,15 +10,21 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME1 = push_swap
+NAME1 = checker
 
-NAME2 = checker
+NAME2 = push_swap
 
-SRC1 = ./check/main.c ./check/ft_create_push_list.c ./check/ft_print_nums.c \
-	./check/ft_check_valid.c \
-	./check/ft_push_swap_rotate.c ./check/ft_supporting.c
+SRC1 = ./check/main.c  ./push/ft_create_push_list.c ./push/ft_print_nums.c \
+		./push/ft_check_valid.c \
+		./push/ft_push_swap_rotate.c ./push/ft_supporting.c \
+		./push/ft_sup_algorithm.c ./push/ft_print_command.c
 
-SRC2 = ./push/main.c ./push/ft_check_valid.c
+SRC2 = ./push/main.c ./push/ft_create_push_list.c ./push/ft_print_nums.c \
+	./push/ft_check_valid.c \
+	./push/ft_push_swap_rotate.c ./push/ft_supporting.c \
+	./push/ft_sup_algorithm.c ./push/ft_algorithm.c \
+	./push/ft_push_faster_on_a.c ./push/ft_push_faster_on_b.c \
+	./push/ft_score_for_rotate.c ./push/ft_print_command.c
 
 HEAD = ./includes/
 
@@ -30,12 +36,14 @@ OBG2 = ./obj_push/*.o
 
 LFT = libft
 
-all: $(NAME1) 
+all: lib $(NAME2) $(NAME1)
+
+lib:
+		@make -C $(LFT)
 
 $(NAME1):
 		
 		@mkdir obj_check
-		@make -C $(LFT) re
 		@gcc $(WWW) \
 		-I $(HEAD) \
 		-c $(SRC1)
