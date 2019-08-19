@@ -56,42 +56,29 @@ static void	ft_strcopy(char *str, char const *s, char c)
 	*str = '\0';
 }
 
-static char	**ft_blockdel(char ***str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i])
-	{
-		ft_strdel(str[i++]);
-	}
-	free(str);
-	return (NULL);
-}
-
-char		**ft_strsplit(char const *s, char c)
+char		**ft_strsplit(char const *av, char c)
 {
 	int		a;
 	int		words;
 	char	**str;
 
-	if (!s)
+	if (!av)
 		return (NULL);
-	words = ft_blen(s, c) + 1;
-	if (!(str = (char**)malloc(sizeof(char*) * words)))
+	words = ft_blen(av, c) + 1;
+	if (!(str = (char**)malloc(sizeof(char*) * (words))))
 		return (NULL);
 	a = 0;
 	while (words-- > 0)
 	{
-		while (*s == c && *s != '\0')
-			s++;
-		if (*s == '\0')
+		while (*av == c && *av != '\0')
+			av++;
+		if (*av == '\0')
 			break ;
-		if (!(str[a] = (char*)malloc(sizeof(char) * ft_len_word(s, c) + 1)))
-			return (ft_blockdel(&str));
-		ft_strcopy(str[a++], s, c);
-		while (*s != c && *s != '\0')
-			s++;
+		if (!(str[a] = (char*)malloc(sizeof(char) * ft_len_word(av, c) + 1)))
+			return (ft_split_free(str));
+		ft_strcopy(str[a++], av, c);
+		while (*av != c && *av != '\0')
+			av++;
 	}
 	str[a] = NULL;
 	return (str);

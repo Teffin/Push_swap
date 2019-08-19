@@ -92,5 +92,5 @@ int					ft_strncmpi(char const *s1, char const *s2);
 void				ft_lsteadd(t_list **alst, t_list *new);
 void				ft_lstfrdel(void *content, size_t content_size);
 int					ft_sqrt(int nb);
-
+char				**ft_split_free(char **splt);
 #endif

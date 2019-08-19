@@ -12,6 +12,22 @@
 
 #include "push_swap.h"
 
+void			ft_free_num(t_push *nums)
+{
+	t_num		*temp;
+	t_num		*temp1;
+
+	temp = nums->num_a->prev;
+	while (nums->num_a != temp)
+	{
+		temp1 = nums->num_a->next;
+		free(nums->num_a);
+		nums->num_a = temp1;
+	}
+	free(nums->num_a);
+	free(nums);
+}
+
 t_num			*ft_create_num(void)
 {
 	t_num		*number;

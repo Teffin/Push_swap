@@ -62,19 +62,21 @@ int				ft_check_command(t_push *nums)
 {
 	char	*comm;
 
-	while (get_next_line(0, &comm) > 0)
+	while (ft_take(0, &comm) > 0)
 	{
+		if (ft_strequ(comm, ""))
+			break ;
 		if (!ft_do_command(nums, comm))
 		{
-			ft_putstr("Error");
+			ft_putstr("Error\n");
 			free(comm);
-			exit (0);
+			exit(0);
 		}
 		free(comm);
 	}
 	if (!ft_chck_sort(nums))
 	{
-		ft_putstr("KO");
+		ft_putstr("KO\n");
 		return (0);
 	}
 	return (1);
@@ -92,6 +94,7 @@ int				main(int ac, char **av)
 	if (nums->flag_visual && nums->checker)
 		ft_print_nums(nums, 'z', 's', 1);
 	if (ft_check_command(nums))
-		ft_putstr("OK");
+		ft_putstr("OK\n");
+	ft_free_num(nums);
 	return (0);
 }

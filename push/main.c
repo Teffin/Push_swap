@@ -24,5 +24,6 @@ int				main(int ac, char **av)
 		ft_print_nums(nums, 'z', 's', 1);
 	if (!ft_algorithm(nums))
 		ft_putstr("My fail\n");
+	ft_free_num(nums);
 	return (0);
 }

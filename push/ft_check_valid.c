@@ -12,48 +12,6 @@
 
 #include "push_swap.h"
 
-static int		ft_pars_flags(char c, t_push *nums)
-{
-	if (c == 'v')
-		nums->flag_visual = 1;
-	else if (c == 'j')
-		nums->flag_j = 1;
-	else if (c == '-')
-		nums->end_flag = 1;
-	else if (c == 'd')
-		nums->flag_sleep_mode = 1000;
-	else if (c == 's')
-		nums->flag_score = 1;
-	else if (c == 't')
-		nums->checker = 1;
-	else
-		return (0);
-	return (1);
-}
-
-int				ft_check_flag(char *av, t_push *nums)
-{
-	int		i;
-
-	i = 0;
-	if (av[i] == '-')
-	{
-		++i;
-		if (av[i])
-		{
-			while (av[i] != '\0')
-			{
-				if (ft_pars_flags(av[i], nums))
-					++i;
-				else
-					return (0);
-			}
-			return (1);
-		}
-	}
-	return (0);
-}
-
 static int		ft_double_num(int num, t_push *nums)
 {
 	t_num		*temp;
@@ -65,6 +23,25 @@ static int		ft_double_num(int num, t_push *nums)
 			return (0);
 		temp = temp->next;
 	}
+	return (1);
+}
+
+static int		ft_equaly_a_i(char *splt_num, t_num *temp, t_push *nums)
+{
+	char		*str_itoa;
+	int			i;
+
+	i = 0;
+	str_itoa = ft_itoa(temp->num);
+	while (splt_num[i] == '0' && splt_num[i + 1] >= '0' &&
+														splt_num[i + 1] <= '9')
+		++i;
+	if (!ft_strequ(splt_num + i, str_itoa) || !ft_double_num(temp->num, nums))
+	{
+		free(str_itoa);
+		return (0);
+	}
+	free(str_itoa);
 	return (1);
 }
 
@@ -91,8 +68,7 @@ static int		ft_check_swap_write(char **splt_num, t_push *nums, int i)
 	}
 	temp->len = ft_strlen(splt_num[i]);
 	temp->num = ft_atoi(splt_num[i]);
-	if (!ft_strequ(splt_num[i], ft_itoa(temp->num)) ||
-								!ft_double_num(temp->num, nums))
+	if (!(ft_equaly_a_i(splt_num[i], temp, nums)))
 		return (0);
 	return (1);
 }
@@ -116,8 +92,12 @@ int				ft_check_valid(char *av, t_push *nums)
 				nums->len_max_num = temp_len;
 		}
 		else
+		{
+			ft_split_free(splt_num);
 			return (0);
+		}
 		++i;
 	}
+	ft_split_free(splt_num);
 	return (1);
 }

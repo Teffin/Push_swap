@@ -87,4 +87,6 @@ void						ft_sup_equal(t_push *nums, char command,
 																char stack);
 void						ft_print_command(char command, char stack);
 void						ft_print_line(char command, char stack);
+void						ft_free_num(t_push *nums);
+int							ft_take(const int fd, char **line);
 #endif

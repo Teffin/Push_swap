@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_blockdel.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hharrold <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/07 16:46:48 by hharrold          #+#    #+#             */
-/*   Updated: 2018/12/22 17:04:38 by hharrold         ###   ########.fr       */
+/*   Created: 2019/08/08 18:15:17 by hharrold          #+#    #+#             */
+/*   Updated: 2019/08/08 18:15:19 by hharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 1
-# define FD_MAX 11000
-# include "libft.h"
-# include <unistd.h>
-# include <stdlib.h>
+#include <stdlib.h>
+#include "libft.h"
 
-int		get_next_line(const int fd, char **line);
+char			**ft_split_free(char **splt)
+{
+	int		i;
 
-#endif
+	i = 0;
+	while (splt[i])
+	{
+		free(splt[i]);
+		i++;
+	}
+	free(splt);
+	return (NULL);
+}

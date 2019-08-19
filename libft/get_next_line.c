@@ -54,6 +54,8 @@ static char		*ft_copyread(const int fd)
 		return (NULL);
 	while ((ret = read(fd, str_buf, BUFF_SIZE)) > 0)
 	{
+		if (str_buf[ret - 1] == '\n')
+			break ;
 		str_buf[ret] = '\0';
 		str_free = str_text;
 		str_text = ft_strjoin(str_text, str_buf);

@@ -17,14 +17,16 @@ NAME2 = push_swap
 SRC1 = ./check/main.c  ./push/ft_create_push_list.c ./push/ft_print_nums.c \
 		./push/ft_check_valid.c \
 		./push/ft_push_swap_rotate.c ./push/ft_supporting.c \
-		./push/ft_sup_algorithm.c ./push/ft_print_command.c
+		./push/ft_sup_algorithm.c ./push/ft_print_command.c ./check/ft_take.c \
+		./push/ft_check_flag.c
 
 SRC2 = ./push/main.c ./push/ft_create_push_list.c ./push/ft_print_nums.c \
 	./push/ft_check_valid.c \
 	./push/ft_push_swap_rotate.c ./push/ft_supporting.c \
 	./push/ft_sup_algorithm.c ./push/ft_algorithm.c \
 	./push/ft_push_faster_on_a.c ./push/ft_push_faster_on_b.c \
-	./push/ft_score_for_rotate.c ./push/ft_print_command.c
+	./push/ft_score_for_rotate.c ./push/ft_print_command.c \
+	./push/ft_check_flag.c
 
 HEAD = ./includes/
 

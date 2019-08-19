@@ -30,9 +30,9 @@ void				ft_print_command(char command, char stack)
 	else if (command == 's' && stack == 's')
 		ft_putstr("ss\n");
 	else if (command == 'p' && stack == 'a')
-		ft_putstr("pa\n");
-	else if (command == 'p' && stack == 'b')
 		ft_putstr("pb\n");
+	else if (command == 'p' && stack == 'b')
+		ft_putstr("pa\n");
 	else if (command == 'r' && stack == 'a')
 		ft_putstr("ra\n");
 	else if (command == 'r' && stack == 'b')
