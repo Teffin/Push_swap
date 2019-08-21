@@ -32,14 +32,17 @@ void			ft_free_num(t_push *nums)
 	t_num		*temp;
 	t_num		*temp1;
 
-	temp = nums->num_a->prev;
-	while (nums->num_a != temp)
+	if (nums->num_a)
 	{
-		temp1 = nums->num_a->next;
+		temp = nums->num_a->prev;
+		while (nums->num_a != temp)
+		{
+			temp1 = nums->num_a->next;
+			free(nums->num_a);
+			nums->num_a = temp1;
+		}
 		free(nums->num_a);
-		nums->num_a = temp1;
 	}
-	free(nums->num_a);
 	if (nums->num_b)
 		ft_free_num_b(nums);
 }
