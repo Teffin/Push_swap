@@ -28,6 +28,7 @@ typedef struct				s_list_num
 	char					mode;
 	struct s_list_num		*next;
 	struct s_list_num		*prev;
+	char					*temp_itoa;
 }							t_num;
 
 typedef struct				s_list_push
@@ -54,10 +55,11 @@ typedef struct				s_list_push
 	int						len_a;
 	int						len_b;
 	int						checker;
+	char					*temp_itoa;
 
 }							t_push;
 
-t_push						*ft_create_push_list();
+void						ft_create_push_list(t_push *num);
 int							ft_sup_checking(int ac, char **av, t_push *nums);
 int							ft_check_flag(char *av, t_push *nums);
 int							ft_check_valid(char *av, t_push *nums);

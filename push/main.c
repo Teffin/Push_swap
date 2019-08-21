@@ -14,16 +14,21 @@
 
 int				main(int ac, char **av)
 {
-	t_push		*nums;
+	t_push		nums;
 
-	nums = ft_create_push_list();
-	if (!ft_sup_checking(ac, av, nums))
+	ft_create_push_list(&nums);
+	if (!ft_sup_checking(ac, av, &nums))
+	{
+		ft_free_num(&nums);
 		return (0);
-	ft_support_after_valid(nums);
-	if (nums->flag_visual && nums->checker)
-		ft_print_nums(nums, 'z', 's', 1);
-	if (!ft_algorithm(nums))
+	}
+	if (!nums.num_a)
+		return (0);
+	ft_support_after_valid(&nums);
+	if (nums.flag_visual && nums.checker)
+		ft_print_nums(&nums, 'z', 's', 1);
+	if (!ft_algorithm(&nums))
 		ft_putstr("My fail\n");
-	ft_free_num(nums);
+	ft_free_num(&nums);
 	return (0);
 }

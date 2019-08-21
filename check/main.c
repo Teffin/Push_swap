@@ -84,17 +84,22 @@ int				ft_check_command(t_push *nums)
 
 int				main(int ac, char **av)
 {
-	t_push		*nums;
+	t_push		nums;
 
-	nums = ft_create_push_list();
-	if (!ft_sup_checking(ac, av, nums))
+	ft_create_push_list(&nums);
+	if (!ft_sup_checking(ac, av, &nums))
+	{
+		ft_free_num(&nums);
 		return (0);
-	nums->checker = 1;
-	ft_support_after_valid(nums);
-	if (nums->flag_visual && nums->checker)
-		ft_print_nums(nums, 'z', 's', 1);
-	if (ft_check_command(nums))
+	}
+	if (!nums.num_a)
+		return (0);
+	nums.checker = 1;
+	ft_support_after_valid(&nums);
+	if (nums.flag_visual && nums.checker)
+		ft_print_nums(&nums, 'z', 's', 1);
+	if (ft_check_command(&nums))
 		ft_putstr("OK\n");
-	ft_free_num(nums);
+	ft_free_num(&nums);
 	return (0);
 }

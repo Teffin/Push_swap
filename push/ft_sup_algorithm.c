@@ -40,9 +40,15 @@ void			ft_sup_prnt(t_push *nums)
 void			ft_help_swap(t_push *nums, char stack)
 {
 	ft_rotate_a_b(nums, stack, 0);
-	ft_push_a(nums, 0);
+	if (stack == 'b')
+		ft_push_b(nums, 0);
+	else
+		ft_push_a(nums, 0);
 	ft_rev_rotate_a_b(nums, stack, 0);
-	ft_push_b(nums, 0);
+	if (stack == 'b')
+		ft_push_a(nums, 0);
+	else
+		ft_push_b(nums, 0);
 }
 
 int				ft_is_sort(t_push *nums)

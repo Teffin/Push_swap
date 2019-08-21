@@ -21,7 +21,7 @@ static int		ft_pars_flags(char c, t_push *nums)
 	else if (c == '-')
 		nums->end_flag = 1;
 	else if (c == 'd')
-		nums->flag_sleep_mode = 1000;
+		nums->flag_sleep_mode = 100;
 	else if (c == 's')
 		nums->flag_score = 1;
 	else if (c == 't')

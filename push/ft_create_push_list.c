@@ -12,6 +12,21 @@
 
 #include "push_swap.h"
 
+static void		ft_free_num_b(t_push *nums)
+{
+	t_num		*temp;
+	t_num		*temp1;
+
+	temp = nums->num_b->prev;
+	while (nums->num_b != temp)
+	{
+		temp1 = nums->num_b->next;
+		free(nums->num_b);
+		nums->num_b = temp1;
+	}
+	free(nums->num_b);
+}
+
 void			ft_free_num(t_push *nums)
 {
 	t_num		*temp;
@@ -25,7 +40,8 @@ void			ft_free_num(t_push *nums)
 		nums->num_a = temp1;
 	}
 	free(nums->num_a);
-	free(nums);
+	if (nums->num_b)
+		ft_free_num_b(nums);
 }
 
 t_num			*ft_create_num(void)
@@ -58,12 +74,8 @@ static void		ft_help_create(t_push *nums)
 	nums->checker = 0;
 }
 
-t_push			*ft_create_push_list(void)
+void			ft_create_push_list(t_push *nums)
 {
-	t_push		*nums;
-
-	if (!(nums = (t_push*)malloc(sizeof(*nums))))
-		return (NULL);
 	nums->num_a = NULL;
 	nums->num_b = NULL;
 	nums->first_a = NULL;
@@ -80,5 +92,4 @@ t_push			*ft_create_push_list(void)
 	nums->max = 0;
 	nums->len_max_num = 0;
 	ft_help_create(nums);
-	return (nums);
 }

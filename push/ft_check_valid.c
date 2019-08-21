@@ -83,19 +83,15 @@ int				ft_check_valid(char *av, t_push *nums)
 	splt_num = ft_strsplit(av, ' ');
 	while (splt_num[i] != NULL)
 	{
-		if (ft_isnums(splt_num[i]))
-		{
-			if (!ft_check_swap_write(splt_num, nums, i))
-				return (0);
-			temp_len = ft_strlen(splt_num[i]);
-			if (temp_len > nums->len_max_num)
-				nums->len_max_num = temp_len;
-		}
-		else
+		if (!(ft_isnums(splt_num[i])) ||
+			(!ft_check_swap_write(splt_num, nums, i)))
 		{
 			ft_split_free(splt_num);
 			return (0);
 		}
+		temp_len = ft_strlen(splt_num[i]);
+		if (temp_len > nums->len_max_num)
+			nums->len_max_num = temp_len;
 		++i;
 	}
 	ft_split_free(splt_num);

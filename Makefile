@@ -44,7 +44,6 @@ lib:
 		@make -C $(LFT)
 
 $(NAME1):
-		
 		@mkdir obj_check
 		@gcc $(WWW) \
 		-I $(HEAD) \

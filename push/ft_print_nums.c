@@ -67,8 +67,9 @@ static void			ft_bottom_print(int i, t_push *nums)
 	ft_putstr("b\n");
 	if (nums->flag_score && nums->checker)
 	{
-		ft_putstr(ft_itoa(nums->score++));
+		ft_putstr(nums->temp_itoa = ft_itoa(nums->score++));
 		ft_putstr(" - time(s)\n");
+		free(nums->temp_itoa);
 	}
 	ft_print_line('e', 's');
 }
@@ -76,20 +77,22 @@ static void			ft_bottom_print(int i, t_push *nums)
 int					ft_print_stack(t_num *nums_a, t_num *nums_b, int i)
 {
 	if (i == 1)
-		ft_putstr(ft_itoa(nums_a->num));
+		ft_putstr(nums_a->temp_itoa = ft_itoa(nums_a->num));
 	else if (nums_a->num == nums_b->num)
 	{
 		while (i--)
 			ft_putstr(" ");
-		ft_putstr(ft_itoa(nums_b->num));
+		ft_putstr(nums_a->temp_itoa = ft_itoa(nums_b->num));
 	}
 	else
 	{
-		ft_putstr(ft_itoa(nums_a->num));
+		ft_putstr(nums_a->temp_itoa = ft_itoa(nums_a->num));
+		free(nums_a->temp_itoa);
 		while (i--)
 			ft_putstr(" ");
-		ft_putstr(ft_itoa(nums_b->num));
+		ft_putstr(nums_a->temp_itoa = ft_itoa(nums_b->num));
 	}
+	free(nums_a->temp_itoa);
 	return (1);
 }
 
