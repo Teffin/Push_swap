@@ -19,12 +19,12 @@ static char			*ft_copyread(const int fd)
 	char				*str_free;
 	int					ret;
 
-	if (!(str_text = (char*)malloc(sizeof(char) + BUFF_SIZE + 1)))
+	if (!(str_text = (char*)malloc(sizeof(char) + 1 + 1)))
 		return (NULL);
 	*str_text = '\0';
 	if ((ret = read(fd, str_buf, 0) < 0))
 		return (NULL);
-	while ((ret = read(fd, str_buf, BUFF_SIZE)) > 0)
+	while ((ret = read(fd, str_buf, 1)) > 0)
 	{
 		if (str_buf[ret - 1] == '\n')
 			break ;

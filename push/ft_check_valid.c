@@ -33,14 +33,23 @@ static int		ft_equaly_a_i(char *splt_num, t_num *temp, t_push *nums)
 
 	i = 0;
 	str_itoa = ft_itoa(temp->num);
+	if (temp->num < 0)
+	{
+		++str_itoa;
+		++i;
+	}
 	while (splt_num[i] == '0' && splt_num[i + 1] >= '0' &&
 														splt_num[i + 1] <= '9')
 		++i;
 	if (!ft_strequ(splt_num + i, str_itoa) || !ft_double_num(temp->num, nums))
 	{
+		if (temp->num < 0)
+			--str_itoa;
 		free(str_itoa);
 		return (0);
 	}
+	if (temp->num < 0)
+		--str_itoa;
 	free(str_itoa);
 	return (1);
 }
